@@ -1,0 +1,9 @@
+version: "3"
+services:
+  privoxy:
+    image: splazit/privoxy-alpine
+    container_name: privoxy
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./config:/etc/privoxy/config

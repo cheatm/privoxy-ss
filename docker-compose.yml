@@ -1,0 +1,19 @@
+version: "3"
+services:
+  ssclient:
+    container_name: ssclient
+    image: mritd/shadowsocks
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./shadowsocks.json:/etc/shadowsocks.json
+    environment:
+      SS_MODULE: ss-local
+      SS_CONFIG: "-c /etc/shadowsocks.json -v"
+  privoxy:
+    image: splazit/privoxy-alpine
+    container_name: privoxy
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./config:/etc/privoxy/config
